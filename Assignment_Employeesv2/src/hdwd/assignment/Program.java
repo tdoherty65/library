@@ -3,7 +3,7 @@ package hdwd.assignment;
 		import hdwd.util.DBConnect;
 
 		import java.sql.*;
-		import java.util.Scanner;
+import java.util.Scanner;
 
 public class Program {	
 
@@ -26,10 +26,10 @@ public class Program {
 						System.out.println("===========================================================");
 						System.out.println("Please select an option by typing the corresponding number.");
 						System.out.println("0. Exit");				
-						System.out.println("1. Add a new book borrower");
-						System.out.println("2. Display records of all employees");
+						System.out.println("1. Add a new book");
+						System.out.println("2. Search for a book by Author");
 						System.out.println("3. Search for an employee");
-						System.out.println("4. Check how many employees are there");				
+						System.out.println("4. Check how many employees are there");	
 						System.out.println("===========================================================");
 						
 						int option = keyboard.nextInt();
@@ -42,24 +42,21 @@ public class Program {
 						
 						// 1. adding an employee
 						else if (option == 1) {					
-							System.out.println("Enter SSN of the borrower.");
-							String ssn = keyboard.next();
+							System.out.println("Enter ISBN of the book.");
+							String isbn = keyboard.next();
 							
-							System.out.println("Enter name of the borrower.");
-							String name = keyboard.next();
+							System.out.println("Enter Title of the book.");
+							String title = keyboard.next();
 							
-							System.out.println("Enter phone number of the borrower.");
-							String gender = keyboard.next();
-							
-							System.out.println("Enter address of the borrower.");
-							String address = keyboard.next();
-							
-							System.out.println("Enter department of the borrower.");
-							String dept = keyboard.next();
+							System.out.println("Enter Publishing Year of the book.");
+							String pubyear = keyboard.next();
+												
+							System.out.println("Enter Author of the book.");
+							String auth = keyboard.next();
 
-							Borrower bor = new Borrower (ssn, name, gender, address);
-							Department de = new Department(dept);
-							addBorrower(conn, bor, de);
+							Book boo = new Book (isbn, title, pubyear);
+							Author a = new Author(auth);
+							addBook(conn, boo, a);
 
 							System.out.println("The record has been successfully entered.");
 						}
@@ -125,8 +122,8 @@ public class Program {
 			 * 
 			 * @param conn
 			 * @param emp
-			 */
-			public static void addBorrower(Connection conn, Borrower bor, Department dept) {
+			 */// HELP ME HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			public static void addBook(Connection conn, Book boo, Author auth) {
 				try {			
 					Statement st = conn.createStatement();
 				    ResultSet rs = null;      
@@ -151,8 +148,8 @@ public class Program {
 					}			
 					rs.close();
 					
-					// HELP ME HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-					rs = st.executeQuery("CALL insertEmployee(\""+bor.getName()+"\", \""+bor.getSsn()+"\", \""+bor.getPhone()+"\", \""+bor.getAddress()+"\", \""+dept.getId()+"\")");
+					
+					rs = st.executeQuery("CALL insertEmployee(\""+boo.getisbn()+"\", \""+boo.gettitle()+"\", \""+boo.getpubyear()+"\", \""+dept.getId()+"\")");
 					rs.close();
 				}
 				catch (SQLException e) {
