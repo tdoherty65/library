@@ -14,7 +14,7 @@ public abstract class DBConnect {
 			
 			// Database access variables
 			String url = "jdbc:mysql://localhost/";
-			String database = "library";
+			String database = "library2";
 			String username = "root";
 			String password = "SQLroot";
 			conn = DriverManager.getConnection(url+database+"?user="+username+"&password="+password);			

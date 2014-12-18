@@ -133,8 +133,8 @@ public class Assignment {
 	public static void addBook(Connection conn, Book boo, Author auth) {
 		try {
 			Statement st = conn.createStatement();
-			String sql = String.format("CALL InsertBook('%s', %d, '%s', '%s', '%s', '%s')", 
-											boo.isbn, boo.copyno, boo.title, boo.pubyear, auth.name, auth.nationality);
+			String sql = String.format("CALL InsertBook('%s', '%s', '%s', '%s', '%s')", 
+											boo.isbn, boo.title, boo.pubyear, auth.name, auth.nationality);
 			ResultSet rs = st.executeQuery(sql);
 			rs.close();
 		}

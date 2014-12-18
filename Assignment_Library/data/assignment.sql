@@ -2,14 +2,13 @@ DROP TABLE IF EXISTS loan;
 
 DROP PROCEDURE IF EXISTS InsertBook;
 Create procedure InsertBook(
-in isbn varchar(15), 
-in copyno int(11), 
-in title varchar(50), 
-publyear int(50), 
-author varchar(50), 
-authornat varchar(10))
+in isbn varchar(40), 
+in title varchar(40), 
+publyear int(40), 
+author varchar(40), 
+authornat varchar(40))
 
-insert into books (ISBN, Copyno, title, publyear, author, authornat) values(isbn, copyno, title, publyear, author, authornat) ;
+insert into books (ISBN, title, publyear, author, authornat) values(isbn, title, publyear, author, authornat) ;
 
 DROP PROCEDURE IF EXISTS InsertBorrower;
 Create procedure InsertBorrower(
