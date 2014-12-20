@@ -28,8 +28,8 @@ public class Assignment {
 				System.out.println("0. Exit");
 				System.out.println("1. Insert Book and Author");
 				System.out.println("2. Insert Book Borrower");
-				System.out.println("3. Search For Book By Author");
-				System.out.println("4. Display Book Count By ISBN");
+				System.out.println("3. A Search For Book By Author");
+				System.out.println("4. NA  Display Book Count By ISBN");
 				System.out.println("5. Lend Book");
 				System.out.println("6. Display All Authors");
 				System.out.println("7. ???");
@@ -88,14 +88,21 @@ public class Assignment {
 				}
 
 				// 3. search for book by author
-					else if (option == 3) {
-						System.out.println("Enter Authors Name.");
-						String authorsearch = keyboard.nextLine();
-				
+				else if (option == 3) {
+					System.out.println("Enter Authors Name.");
+					String author = keyboard.nextLine();
 					
-
-						System.out.println("The record has been successfully entered.");
+					Author auth = new Author (author);
+					Book[] books = getAllBooks(conn, auth);
+					for (int i = 0; i < books.length; i++) {
+						System.out.printf("Book #%d : ID=%s, isbn=%s, title=%s, pubyear=%s \n", i, books[i].id, books[i].isbn, books[i].title, books[i].pubyear);
+					}
 				}
+		
+			
+						
+						
+
 				// 6. displaying all authors
 				else if (option == 6) {
 					Author[] authors = getAllAuthors(conn);
@@ -190,5 +197,38 @@ public class Assignment {
 			e.printStackTrace();
 			return new Author[0];
 		}
+		
 	}
+	
+	public static Book[] getAllBooks(Connection conn, Author auth) {
+		Book[] books;
+
+		try {
+			Statement st = conn.createStatement();
+			ResultSet rs = st.executeQuery("CALL GetAllBooks(\""+auth.name+"\")");
+
+			int total = 0, i = 0;
+
+			// find out how many items need to be stored in the array
+			while (rs.next())
+				total++;
+			books = new Book [total];
+
+			// reset the iterator to the start of the results and save the
+			// details of each row to a new Author object
+			rs.beforeFirst();
+			while (rs.next())
+				books[i++] = new Book(rs.getInt("id"), rs.getString("isbn"), rs.getString("title"), rs.getString("p"));
+
+			rs.close();
+			return books;
+		
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+			return new Book[0];
+		}
+	}
+
+
 }

@@ -16,7 +16,7 @@ public class Book {
 		pubyear = p;
 	}
 
-	public Book(int i, String is, String t, String p, String a) {
+	public Book(int i, String is, String t, String p) {
 		id = i;
 		isbn = is;
 		title = t;
