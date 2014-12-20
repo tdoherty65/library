@@ -28,8 +28,8 @@ public class Assignment {
 				System.out.println("0. Exit");
 				System.out.println("1. Q1a.Insert Book and Author (WORKING)");
 				System.out.println("2. Q1b.Insert Book Borrower (WORKING)");
-				System.out.println("3. Q2. Search For Book By Author");
-				System.out.println("4. Q3. Display how many copies of a Book in library");
+				System.out.println("3. Q2. Search For Book By Author(WORKING");
+				System.out.println("4. Q3. Search For Book by ISBN");
 				System.out.println("5. Q4  Lend Book (Limited to 5 books)");
 				System.out.println("6. Q5  Display All Authors (WORKING)");
 				System.out.println("===========================================================");
@@ -100,15 +100,20 @@ public class Assignment {
 		
 			
 				// 3. Display how many copies of a Book in library (Display book count by ISBN)
-				
-				else if (option == 4) {
-										
-					//Author auth = new Author (author);
-					//Book[] books = getAllBooksByISBN(conn, auth);
+				// find how many copies of a book are in the library (Search by isbn)
+				//else if (option == 4) {
+					
+					//System.out.println("Enter ISBN Number.");
+				//	String isbn = keyboard.nextLine();
+					
+					//ISBN is = new ISBN (isbn);
+					//Book[] books = getAllBooksISBN(conn, is);
 					//for (int i = 0; i < books.length; i++) {
 					//	System.out.printf("Book #%d : ID=%s, isbn=%s, title=%s, pubyear=%s \n", i, books[i].id, books[i].isbn, books[i].title, books[i].pubyear);
 					//}
-				}
+										
+					
+			//	}
 						
 				
 				// 4. Lend Book (Limited to 5 books)
@@ -213,7 +218,7 @@ public class Assignment {
 		
 	}
 	
-	//get all books
+	//get all books method used in Q2
 	public static Book[] getAllBooks(Connection conn, Author auth) {
 		Book[] books;
 
@@ -236,6 +241,34 @@ public class Assignment {
 
 			rs.close();
 			return books;
+			
+		
+	
+	
+	
+			//get all books by ISBN method used in Q3
+		//	public static Book[] getAllBooksISBN(Connection conn, ISBN is) {
+//				Book[] books;
+
+	//			try {
+	/*				Statement st = conn.createStatement();
+					ResultSet rs = st.executeQuery("CALL GetAllBooks(\""+books.isbn+"\")");
+
+					int total = 0, i = 0;
+
+					// find out how many items need to be stored in the array
+					while (rs.next())
+						total++;
+					books = new Book [total];
+
+					// reset the iterator to the start of the results and save the
+					// details of each row to a new Author object
+					rs.beforeFirst();
+					while (rs.next())
+						books[i++] = new Book(rs.getInt("id"), rs.getString("isbn"), rs.getString("title"), rs.getString("pubyear"));
+
+					rs.close();
+					return books;*/
 			
 	//end of methods
 		

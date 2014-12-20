@@ -1,4 +1,4 @@
-package hdwd.assignment; //copied from department
+package hdwd.assignment; 
 
 public class Author {
 
