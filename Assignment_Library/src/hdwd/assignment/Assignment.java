@@ -26,13 +26,12 @@ public class Assignment {
 				System.out.println("===========================================================");
 				System.out.println("Please select an option by typing the corresponding number.");
 				System.out.println("0. Exit");
-				System.out.println("1. Insert Book and Author");
-				System.out.println("2. Insert Book Borrower");
-				System.out.println("3. A Search For Book By Author");
-				System.out.println("4. NA  Display Book Count By ISBN");
-				System.out.println("5. Lend Book");
-				System.out.println("6. Display All Authors");
-				System.out.println("7. ???");
+				System.out.println("1. Q1a.Insert Book and Author (WORKING)");
+				System.out.println("2. Q1b.Insert Book Borrower (WORKING)");
+				System.out.println("3. Q2. Search For Book By Author");
+				System.out.println("4. Q3. Display how many copies of a Book in library");
+				System.out.println("5. Q4  Lend Book (Limited to 5 books)");
+				System.out.println("6. Q5  Display All Authors (WORKING)");
 				System.out.println("===========================================================");
 
 				int option = Integer.parseInt(keyboard.nextLine());
@@ -43,7 +42,7 @@ public class Assignment {
 					break;
 				}
 
-				// 1. adding a book
+				// Q1a. insert book and author
 				else if (option == 1) {
 					System.out.println("Enter ISBN of the book.");
 					String isbn = keyboard.nextLine();
@@ -66,7 +65,7 @@ public class Assignment {
 
 					System.out.println("The record has been successfully entered.");
 				}
-					// 2. adding a borrower
+					// Q1b. add a borrower
 					else if (option == 2) {
 						System.out.println("Enter Borrower SSN.");
 						String ssn = keyboard.nextLine();
@@ -87,7 +86,7 @@ public class Assignment {
 						System.out.println("The record has been successfully entered.");
 				}
 
-				// 3. search for book by author
+				// Q2. Search for book based on author
 				else if (option == 3) {
 					System.out.println("Enter Authors Name.");
 					String author = keyboard.nextLine();
@@ -100,17 +99,29 @@ public class Assignment {
 				}
 		
 			
+				// 3. Display how many copies of a Book in library (Display book count by ISBN)
+				
+				else if (option == 4) {
+										
+					//Author auth = new Author (author);
+					//Book[] books = getAllBooksByISBN(conn, auth);
+					//for (int i = 0; i < books.length; i++) {
+					//	System.out.printf("Book #%d : ID=%s, isbn=%s, title=%s, pubyear=%s \n", i, books[i].id, books[i].isbn, books[i].title, books[i].pubyear);
+					//}
+				}
 						
-						
+				
+				// 4. Lend Book (Limited to 5 books)
+				
 
-				// 6. displaying all authors
+				// 5. BONUS display all authors BONUS
 				else if (option == 6) {
 					Author[] authors = getAllAuthors(conn);
 					for (int i = 0; i < authors.length; i++) {
 						System.out.printf("Author #%d : ID=%s, Name=%s, Nationality=%s \n", i, authors[i].id, authors[i].name, authors[i].nationality);
 					}
-				}
-
+				}				
+				
 				// unknown option
 				else {
 					System.out.println("Invalid option.");
@@ -137,6 +148,7 @@ public class Assignment {
 	 * @param auth
 	 *            Author
 	 */
+	//add book
 	public static void addBook(Connection conn, Book boo, Author auth) {
 		try {
 			Statement st = conn.createStatement();
@@ -149,7 +161,7 @@ public class Assignment {
 			e.printStackTrace();
 		}
 	}
-	
+	//add borrower
 	public static void addBorrower(Connection conn, Borrower borr ) {
 		try {
 			Statement st = conn.createStatement();
@@ -170,6 +182,7 @@ public class Assignment {
 	 * 
 	 * @param conn
 	 */
+	//get all authors
 	public static Author[] getAllAuthors(Connection conn) {
 		Author[] authors;
 
@@ -188,7 +201,7 @@ public class Assignment {
 			// details of each row to a new Author object
 			rs.beforeFirst();
 			while (rs.next())
-				authors[i++] = new Author(rs.getInt("id"), rs.getString("author"), rs.getString("authornat"));
+				authors[i++] = new Author(rs.getInt("authorid"), rs.getString("authorname"), rs.getString("authornat"));
 
 			rs.close();
 			return authors;
@@ -200,6 +213,7 @@ public class Assignment {
 		
 	}
 	
+	//get all books
 	public static Book[] getAllBooks(Connection conn, Author auth) {
 		Book[] books;
 
@@ -218,10 +232,12 @@ public class Assignment {
 			// details of each row to a new Author object
 			rs.beforeFirst();
 			while (rs.next())
-				books[i++] = new Book(rs.getInt("id"), rs.getString("isbn"), rs.getString("title"), rs.getString("p"));
+				books[i++] = new Book(rs.getInt("id"), rs.getString("isbn"), rs.getString("title"), rs.getString("pubyear"));
 
 			rs.close();
 			return books;
+			
+	//end of methods
 		
 		}
 		catch (SQLException e) {
