@@ -100,23 +100,24 @@ public class Assignment {
 		
 			
 				// 3. Display how many copies of a Book in library (Display book count by ISBN)
-				// find how many copies of a book are in the library (Search by isbn)
-				//else if (option == 4) {
+				else if (option == 4) {
 					
-					//System.out.println("Enter ISBN Number.");
-				//	String isbn = keyboard.nextLine();
+				System.out.println("Enter ISBN Number.");
+				String isbn = keyboard.nextLine();
 					
-					//ISBN is = new ISBN (isbn);
-					//Book[] books = getAllBooksISBN(conn, is);
-					//for (int i = 0; i < books.length; i++) {
-					//	System.out.printf("Book #%d : ID=%s, isbn=%s, title=%s, pubyear=%s \n", i, books[i].id, books[i].isbn, books[i].title, books[i].pubyear);
-					//}
-										
+					ISBN is = new ISBN (isbn);
+					/*Book[] books = getAllBooksISBN(conn, is);
+					for (int i = 0; i < books.length; i++) {
+						System.out.printf("Book #%d : ID=%s, isbn=%s, title=%s, pubyear=%s \n", i, books[i].id, books[i].isbn, books[i].title, books[i].pubyear);
+					}
+										*/
 					
-			//	}
+				}
 						
 				
 				// 4. Lend Book (Limited to 5 books)
+				
+				
 				
 
 				// 5. BONUS display all authors BONUS
@@ -241,43 +242,23 @@ public class Assignment {
 
 			rs.close();
 			return books;
-			
-		
-	
-	
-	
-			//get all books by ISBN method used in Q3
-		//	public static Book[] getAllBooksISBN(Connection conn, ISBN is) {
-//				Book[] books;
-
-	//			try {
-	/*				Statement st = conn.createStatement();
-					ResultSet rs = st.executeQuery("CALL GetAllBooks(\""+books.isbn+"\")");
-
-					int total = 0, i = 0;
-
-					// find out how many items need to be stored in the array
-					while (rs.next())
-						total++;
-					books = new Book [total];
-
-					// reset the iterator to the start of the results and save the
-					// details of each row to a new Author object
-					rs.beforeFirst();
-					while (rs.next())
-						books[i++] = new Book(rs.getInt("id"), rs.getString("isbn"), rs.getString("title"), rs.getString("pubyear"));
-
-					rs.close();
-					return books;*/
-			
-	//end of methods
-		
 		}
-		catch (SQLException e) {
-			e.printStackTrace();
-			return new Book[0];
+			catch (SQLException e) {
+				e.printStackTrace();
+				return new Book[0];
+			
 		}
+	}
+	
+		//get all books by ISBN method used in Q3
+			
+	
+	
+	
+	
+	
+		//end of methods
 	}
 
 
-}
+
