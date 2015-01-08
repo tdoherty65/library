@@ -9,8 +9,6 @@ authornat varchar(10))
 insert into books (ISBN, Copyno, title, publyear, author, authornat) 
 values(isbn, copyno, title, publyear, author, authornat) ;
 
-
-
 Create procedure InsertBorrower
 (in SSN bigint(11), in name 
 varchar(20), in address varchar(20), phone varchar(20), nobooks int(11))
